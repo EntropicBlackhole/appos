@@ -207,29 +207,29 @@ class _HomePageState extends State<HomePage> {
               bottom: Radius.circular(20),
             ),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text("About Appos:"),
-                  content: const SingleChildScrollView(
-                    child: Text(
-                        "I made this app as an anniversary gift for my girlfriend as she inspired me to make this, by suggesting I'd do it on my laptop, however this has actually started helping me, so I decided I'd turn it into an app!!\n\nI love you so much my Remote<3\nThank you for being here with me for over a year now, you're really the most special part of my life aren't you<3\n<3"),
-                  ),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'OK'),
-                      child: const Text('OK'),
-                    ),
-                  ],
-                ),
-              ),
-              child: const Icon(
-                Icons.info_outline_rounded,
-                color: Colors.white,
-              ),
-            ),
+          actions: const [
+            // TextButton(
+            //   onPressed: () => showDialog<String>(
+            //     context: context,
+            //     builder: (BuildContext context) => AlertDialog(
+            //       title: const Text("About Appos:"),
+            //       content: const SingleChildScrollView(
+            //         child: Text(
+            //             "I made this app as an anniversary gift for my girlfriend as she inspired me to make this, by suggesting I'd do it on my laptop, however this has actually started helping me, so I decided I'd turn it into an app!!\n\nI love you so much my Remote<3\nThank you for being here with me for over a year now, you're really the most special part of my life aren't you<3\n<3"),
+            //       ),
+            //       actions: <Widget>[
+            //         TextButton(
+            //           onPressed: () => Navigator.pop(context, 'OK'),
+            //           child: const Text('OK'),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            //   child: const Icon(
+            //     Icons.info_outline_rounded,
+            //     color: Colors.white,
+            //   ),
+            // ),
             // IconButton(
             //   icon: const Icon(Icons.save),
             //   onPressed: () async {
