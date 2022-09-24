@@ -117,10 +117,8 @@ class _HomePageState extends State<HomePage> {
           // });
           // print('file does not exist');
         }
-        print(settings.toString() + 'file');
       });
     });
-    print(settings.toString() + '2');
     // var duration = Duration(seconds: settings["interval_of_notification"]);
     // Timer.periodic(duration, (timer) {
     //   temp(messageObject);
@@ -132,7 +130,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage("lib/assets/images/background.jpg"),
@@ -143,22 +141,17 @@ class _HomePageState extends State<HomePage> {
           child: Stack(
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [
                   Color.fromARGB(255, 119, 190, 248),
                   Color.fromARGB(255, 182, 96, 231),
-                ])),
-                child: ListView(
-                  children: <Widget>[
-                    //drawer stuffs
-                  ],
-                ),
+                ],),),
               ),
               ListView(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.add_circle),
-                    title: Text('Add'),
+                    leading: const Icon(Icons.add_circle),
+                    title: const Text('Add'),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -170,8 +163,8 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.help),
-                    title: Text('Help'),
+                    leading: const Icon(Icons.help),
+                    title: const Text('Help'),
                     onTap: () => showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -190,8 +183,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text('Settings'),
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -209,7 +202,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text("Appos: Positivity"),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
             ),
@@ -308,7 +301,7 @@ class _HomePageState extends State<HomePage> {
   setNotifTimer() async {
     Map _settings = json.decode(await InternalFiles.read("settings"));
     int notifInterval = _settings["interval_of_notification"];
-    var duration = Duration(seconds: _settings["interval_of_notification"]);
+    var duration = Duration(seconds: notifInterval);
     Timer.periodic(duration, (timer) async {
       Map _settings = json.decode(await InternalFiles.read("settings"));
       List _bodies = json.decode(await InternalFiles.read("main"));

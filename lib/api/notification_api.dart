@@ -1,5 +1,4 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/subjects.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'dart:math';
@@ -43,7 +42,7 @@ class LocalNotificationService {
     const IOSNotificationDetails iosNotificationDetails =
         IOSNotificationDetails();
 
-    return NotificationDetails(
+    return const NotificationDetails(
       android: androidNotificationDetails,
       iOS: iosNotificationDetails,
     );
@@ -80,12 +79,10 @@ class LocalNotificationService {
       for (int i = 0; i < bodies.length; i++) {
         if (bodies[i]["hearted"] == 'true') {
           tempBodies.add(bodies[i]);
-          print(bodies[i]);
         }
       }
       bodies = tempBodies;
       tempBodies = [];
-      print('hearted message: ' + bodies[0].toString());
     }
     final body = bodies[Random().nextInt(bodies.length)]["message"];
     final details = await _notificationDetails();
@@ -125,10 +122,8 @@ class LocalNotificationService {
 
   void _onDidRecieveLocalNotification(
       int id, String? title, String? body, String? payload) {
-    print('id $id');
   }
 
   void onSelectNotification(String? payload) {
-    print(payload);
   }
 }

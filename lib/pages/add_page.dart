@@ -32,7 +32,7 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage("lib/assets/images/background.jpg"),
@@ -42,7 +42,7 @@ class _AddPageState extends State<AddPage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text("Appos: Add message"),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
             ),

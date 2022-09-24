@@ -20,7 +20,7 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage("lib/assets/images/background.jpg"),
@@ -30,7 +30,7 @@ class _EditPageState extends State<EditPage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text("Edit: #${widget.messageMap['id'] ?? "ID missing"}"),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
             ),

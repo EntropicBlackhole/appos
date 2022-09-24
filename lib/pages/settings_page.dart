@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:appos/pages/home_page.dart';
-import 'package:flutter/services.dart';
 import 'package:appos/api/storage_api.dart';
 import 'dart:convert';
 
@@ -37,7 +36,6 @@ class _SettingsPageState extends State<SettingsPage> {
           };
         }
         interval = settings['interval_of_notification'];
-        print(interval);
         prioritization = settings['amount_of_priotization_of_hearted_messages'];
         idShow = settings['show_id'];
         darkMode = settings['dark_mode'];
@@ -52,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage("lib/assets/images/background.jpg"),
@@ -62,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: const Text("Appos: Settings"),
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(20),
               ),
@@ -183,14 +181,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      print(settings['interval_of_notification']);
                       settings['interval_of_notification'] = interval;
-                      print(settings['interval_of_notification']);
                       settings['amount_of_priotization_of_hearted_messages'] =
                           prioritization.toDouble();
                       settings['show_id'] = idShow;
                       settings['dark_mode'] = darkMode;
-                      print(settings);
                       InternalFiles.write(json.encode(settings), "settings");
                       Navigator.pushAndRemoveUntil(
                         context,
