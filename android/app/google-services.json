@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "122524131446",
+    "project_id": "appos-d627d",
+    "storage_bucket": "appos-d627d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122524131446:android:2ae220536c03b52daaff57",
+        "android_client_info": {
+          "package_name": "com.example.appos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122524131446-4o26e263048gd5pn3id3au0frsrgfo6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appos",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "122524131446-lcab9q4eu1m6s18ohnki2ob7i6dd062e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRtnZpJxok7ICdV-RPR5_bxqPyCNBbbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122524131446-lcab9q4eu1m6s18ohnki2ob7i6dd062e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
