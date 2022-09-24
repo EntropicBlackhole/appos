@@ -7,7 +7,9 @@ import 'dart:convert';
 
 class AddPage extends StatefulWidget {
   List<dynamic> messageObject = [];
-  AddPage({Key? key, required this.messageObject}) : super(key: key);
+  bool darkMode = false;
+  AddPage({Key? key, required this.messageObject, required this.darkMode})
+      : super(key: key);
 
   @override
   State<AddPage> createState() => _AddPageState();
@@ -17,7 +19,6 @@ class _AddPageState extends State<AddPage> {
   final newMesssageController = TextEditingController();
   int messageAmt = 0;
   Map newMessage = {};
-
   @override
   void initState() {
     super.initState();
@@ -33,15 +34,17 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("lib/assets/images/background.jpg"),
+            image: AssetImage(
+                "lib/assets/images/background${(widget.darkMode ? "_darkmode" : "")}.jpg"),
             fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text("Appos: Add message"),
+          backgroundColor: (widget.darkMode ? Colors.black12 : Colors.blue),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
@@ -56,9 +59,15 @@ class _AddPageState extends State<AddPage> {
                 height: 8,
               ),
               TextField(
+                style: TextStyle(
+                    color: (widget.darkMode ? Colors.white : Colors.black)),
                 decoration: InputDecoration(
                   label: Text("ID: ${messageAmt + 1}"),
+                  labelStyle: TextStyle(
+                      color: (widget.darkMode ? Colors.white : Colors.black)),
                   floatingLabelStyle: const TextStyle(color: Colors.blue),
+                  fillColor: (widget.darkMode ? Colors.black45 : null),
+                  filled: true,
                   border: const OutlineInputBorder(),
                 ),
                 controller: newMesssageController,

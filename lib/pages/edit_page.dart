@@ -7,7 +7,8 @@ import 'dart:convert';
 class EditPage extends StatefulWidget {
   Map messageMap = {};
   List messageList = [];
-  EditPage({Key? key, required this.messageMap, required this.messageList})
+  bool darkMode = false;
+  EditPage({Key? key, required this.messageMap, required this.messageList, required this.darkMode})
       : super(key: key);
 
   @override
@@ -21,14 +22,15 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("lib/assets/images/background.jpg"),
+            image: AssetImage("lib/assets/images/background${(widget.darkMode ? "_darkmode" : "")}.jpg"),
             fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          backgroundColor: (widget.darkMode ? Colors.black12 : Colors.blue),
           title: Text("Edit: #${widget.messageMap['id'] ?? "ID missing"}"),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -58,10 +60,16 @@ class _EditPageState extends State<EditPage> {
                 height: 8,
               ),
               TextField(
-                decoration: const InputDecoration(
-                  label: Text("Message"),
-                  floatingLabelStyle: TextStyle(color: Colors.blue),
-                  border: OutlineInputBorder(),
+                style: TextStyle(
+                    color: (widget.darkMode ? Colors.white : Colors.black)),
+                decoration: InputDecoration(
+                  label: const Text("Message"),
+                  labelStyle: TextStyle(
+                      color: (widget.darkMode ? Colors.white : Colors.black)),
+                  floatingLabelStyle: const TextStyle(color: Colors.blue),
+                  fillColor: (widget.darkMode ? Colors.black45 : null),
+                  filled: true,
+                  border: const OutlineInputBorder(),
                 ),
                 controller: TextEditingController(
                   text: widget.messageMap['message'],

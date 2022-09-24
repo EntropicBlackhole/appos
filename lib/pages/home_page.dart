@@ -131,9 +131,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("lib/assets/images/background.jpg"),
+            image: AssetImage(
+                "lib/assets/images/background${(settings["dark_mode"] ? "_darkmode" : "")}.jpg"),
             fit: BoxFit.cover),
       ),
       child: Scaffold(
@@ -141,11 +142,16 @@ class _HomePageState extends State<HomePage> {
           child: Stack(
             children: [
               Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                  Color.fromARGB(255, 119, 190, 248),
-                  Color.fromARGB(255, 182, 96, 231),
-                ],),),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      (settings["dark_mode"]
+                          ? const Color.fromARGB(255, 39, 61, 80)
+                          : const Color.fromARGB(255, 119, 190, 248)),
+                      const Color.fromARGB(255, 182, 96, 231),
+                    ],
+                  ),
+                ),
               ),
               ListView(
                 children: [
@@ -156,8 +162,9 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              AddPage(messageObject: messageObject),
+                          builder: (context) => AddPage(
+                              messageObject: messageObject,
+                              darkMode: (settings["dark_mode"])),
                         ),
                       );
                     },
@@ -202,6 +209,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text("Appos: Positivity"),
+          backgroundColor:
+              (settings["dark_mode"] ? Colors.black12 : Colors.blue),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(20),
@@ -239,11 +248,17 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+            backgroundColor:
+                (settings["dark_mode"] ? Colors.black26 : Colors.blue),
+            foregroundColor:
+                (settings["dark_mode"] ? Colors.white : Colors.black),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddPage(messageObject: messageObject),
+                  builder: (context) => AddPage(
+                      messageObject: messageObject,
+                      darkMode: (settings["dark_mode"])),
                 ),
               );
             },
@@ -257,9 +272,19 @@ class _HomePageState extends State<HomePage> {
                   children: messageObject
                       .map<Widget>(
                         (e) => ListTile(
-                          title: Text(e['message']),
+                          title: Text(
+                            e['message'],
+                            style: TextStyle(
+                                color: (settings["dark_mode"]
+                                    ? Colors.white
+                                    : Colors.black)),
+                          ),
                           subtitle: (settings['show_id'])
-                              ? Text("#${e['id']}")
+                              ? Text("#${e['id']}",
+                                  style: TextStyle(
+                                      color: (settings["dark_mode"]
+                                          ? Colors.white
+                                          : Colors.black)))
                               : null,
                           trailing: IconButton(
                             onPressed: () {
@@ -275,14 +300,20 @@ class _HomePageState extends State<HomePage> {
                                   ? Icons.favorite
                                   : Icons.favorite_border,
                             ),
-                            color: (e["hearted"] == 'true') ? Colors.red : null,
+                            color: (e["hearted"] == 'true')
+                                ? Colors.red
+                                : (settings["dark_mode"]
+                                    ? Colors.white
+                                    : Colors.black),
                           ),
                           onLongPress: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => EditPage(
-                                    messageMap: e, messageList: messageObject),
+                                    messageMap: e,
+                                    messageList: messageObject,
+                                    darkMode: settings["dark_mode"]),
                               ),
                             );
                           },
@@ -305,7 +336,12 @@ class _HomePageState extends State<HomePage> {
     Timer.periodic(duration, (timer) async {
       Map _settings = json.decode(await InternalFiles.read("settings"));
       List _bodies = json.decode(await InternalFiles.read("main"));
-      service.showRandomNotification(id: 0, title: "Appos", bodies: _bodies, heartPriority: _settings["amount_of_priotization_of_hearted_messages"]);
+      service.showRandomNotification(
+          id: 0,
+          title: "Appos",
+          bodies: _bodies,
+          heartPriority:
+              _settings["amount_of_priotization_of_hearted_messages"]);
       if (isNewTimer) {
         timer.cancel();
         isNewTimer = false;

@@ -51,14 +51,16 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("lib/assets/images/background.jpg"),
+            image: AssetImage(
+                "lib/assets/images/background${(darkMode ? "_darkmode" : "")}.jpg"),
             fit: BoxFit.cover),
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            backgroundColor: (darkMode ? Colors.black12 : Colors.blue),
             title: const Text("Appos: Settings"),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -70,21 +72,24 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(20.0),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Interval of notification:",
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "",
-                    ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "",
+                        color: (darkMode ? Colors.white : Colors.black)),
                   ),
                 ),
                 RadioListTile<SingingCharacter>(
-                  title: const Text('Every minute'),
+                  title: Text('Every minute',
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: SingingCharacter.minute,
                   groupValue: _character,
+                  activeColor: ((darkMode ? Colors.purple : Colors.blue)),
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
@@ -93,9 +98,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 RadioListTile<SingingCharacter>(
-                  title: const Text('Hourly'),
+                  title: Text('Hourly',
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: SingingCharacter.hour,
                   groupValue: _character,
+                  activeColor: ((darkMode ? Colors.purple : Colors.blue)),
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
@@ -104,9 +112,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 RadioListTile<SingingCharacter>(
-                  title: const Text('Daily'),
+                  title: Text('Daily',
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: SingingCharacter.day,
                   groupValue: _character,
+                  activeColor: ((darkMode ? Colors.purple : Colors.blue)),
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
@@ -115,9 +126,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 RadioListTile<SingingCharacter>(
-                  title: const Text('Weekly'),
+                  title: Text('Weekly',
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: SingingCharacter.week,
                   groupValue: _character,
+                  activeColor: (darkMode ? Colors.purple : Colors.blue),
                   onChanged: (SingingCharacter? value) {
                     setState(() {
                       _character = value;
@@ -129,11 +143,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Prioritization of hearted messages: ${prioritization.toInt().toString()}",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "",
-                    ),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "",
+                        color: (darkMode ? Colors.white : Colors.black)),
                   ),
                 ),
                 Slider(
@@ -142,26 +156,32 @@ class _SettingsPageState extends State<SettingsPage> {
                   max: 10.0,
                   divisions: 9,
                   label: prioritization.toInt().toString(),
+                  inactiveColor: (darkMode ? Colors.deepPurple : null),
+                  activeColor: (darkMode ? Colors.purple : null),
+                  thumbColor: (darkMode ? Colors.purple : null),
                   onChanged: (value) {
                     setState(() {
                       prioritization = value.toDouble();
                     });
                   },
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(20.0),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Other:",
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "",
-                    ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "",
+                        color: (darkMode ? Colors.white : Colors.black)),
                   ),
                 ),
                 SwitchListTile(
-                  title: const Text("Show ID"),
+                  title: Text("Show ID",
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: idShow,
+                  activeColor: (darkMode ? Colors.purple : null),
                   onChanged: (value) {
                     setState(() {
                       idShow = !idShow;
@@ -169,8 +189,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 SwitchListTile(
-                  title: const Text("Dark mode"),
+                  title: Text("Dark mode",
+                      style: TextStyle(
+                          color: (darkMode ? Colors.white : Colors.black))),
                   value: darkMode,
+                  activeColor: (darkMode ? Colors.purple : null),
                   onChanged: (value) {
                     setState(() {
                       darkMode = value;
@@ -197,7 +220,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Colors.green,
+                        (darkMode ? Colors.purpleAccent : Colors.green),
                       ),
                       // foregroundColor: ,
                     ),
